@@ -124,7 +124,7 @@ const ProductDetails = () => {
       <div className="row container similar-products">
 
         
-        <h4>Similar Products ➡️</h4>
+        <h3 className="text-center">You might also like</h3>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
@@ -141,7 +141,7 @@ const ProductDetails = () => {
                 <div className="card-name-price">
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("ne-NP", {
+                    {p.price.toLocaleString("eu-us", {
                       style: "currency",
                       currency: "NPR",
                     })}
