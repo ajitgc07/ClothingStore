@@ -39,7 +39,7 @@ const CreateProduct = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     // Validation
-  if (!/^[A-Za-z\s]+$/.test(name)) {
+  if (!/^[A-Za-z\s-]+$/.test(name)) {
     toast.error("Name must contain only alphabets");
     return;
   }
@@ -105,11 +105,11 @@ const CreateProduct = () => {
               </Select>
               <div className="mb-3">
               <label className="btn btn-outline-secondary col-md-12">
-                {photo ? photo.name : "Upload Photo (PNG/JPG)"}
+                {photo ? photo.name : "Upload Photo (PNG/JPEG/JPG)"}
                 <input
                   type="file"
                   name="photo"
-                  accept="image/png, image/jpeg"  /* Only accept PNG and JPEG files */
+                  accept="image/png, image/jpeg, image/jpg"  /* Only accept PNG and JPEG files */
                   onChange={(e) => setPhoto(e.target.files[0])}
                   hidden
                 />

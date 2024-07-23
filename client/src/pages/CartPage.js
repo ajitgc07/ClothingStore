@@ -90,57 +90,57 @@ const CartPage = () => {
 
 
 
-  // const khaltiPayment = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const totalAmount = cart.reduce((acc, item) => {
-  //       return acc + item.price * item.quantity;
-  //     }, 0);
+  const khaltiPayment = async () => {
+    try {
+      setLoading(true);
+      const totalAmount = cart.reduce((acc, item) => {
+        return acc + item.price * item.quantity;
+      }, 0);
 
-  //     const paymentData = {
-  //       return_url: "http://localhost:3000/success",
-  //       website_url: "http://localhost:3000",
-  //       amount: totalAmount * 100, // Amount should be in paisa
-  //       purchase_order_id: "your_order_id", // Replace with a unique order ID
-  //       purchase_order_name: "Your Order Name",
-  //       customer_info: {
-  //         name: "Bibek Neupane",
-  //         email: "bibekneupane@gmail.com",
-  //         phone: "9817497025",
-  //       },
-  //       amount_breakdown: [
-  //         {
-  //           label: "Total Price",
-  //           amount: totalAmount * 100, // Same as the total amount
-  //         },
-  //       ],
-  //       product_details: cart.map((item) => ({
-  //         identity: item._id,
-  //         name: item.name,
-  //         total_price: item.price * item.quantity * 100, // Total price per item in paisa
-  //         quantity: item.quantity,
-  //         unit_price: item.price * 100, // Unit price per item in paisa
-  //       })),
-  //     };
+      const paymentData = {
+        return_url: "http://localhost:3000/success",
+        website_url: "http://localhost:3000",
+        amount: totalAmount * 100, // Amount should be in paisa
+        purchase_order_id: "your_order_id", // Replace with a unique order ID
+        purchase_order_name: "Your Order Name",
+        customer_info: {
+          name: "Bibek Neupane",
+          email: "bibekneupane@gmail.com",
+          phone: "9817497025",
+        },
+        amount_breakdown: [
+          {
+            label: "Total Price",
+            amount: totalAmount * 100, // Same as the total amount
+          },
+        ],
+        product_details: cart.map((item) => ({
+          identity: item._id,
+          name: item.name,
+          total_price: item.price * item.quantity * 100, // Total price per item in paisa
+          quantity: item.quantity,
+          unit_price: item.price * 100, // Unit price per item in paisa
+        })),
+      };
       
-  //     const response = await axios.post("/api/initiate-payment", paymentData);
-  //     const khaltiUrl = response.data;
-  //     if(khaltiUrl) {
-  //       window.open(khaltiUrl, '_blank');
-  //     }else {
-  //       console.error("Payment URL not fount in response");
-  //     }
+      const response = await axios.post("/api/initiate-payment", paymentData);
+      const khaltiUrl = response.data;
+      if(khaltiUrl) {
+        window.open(khaltiUrl, '_blank');
+      }else {
+        console.error("Payment URL not fount in response");
+      }
 
-  //     setLoading(false);
-  //     localStorage.removeItem("cart");
-  //     setCart([]);
-  //     navigate("/dashboard/user/orders");
-  //     toast.success("Payment Completed Successfully ");
-  //   } catch (error) {
-  //     console.error("Error initiating payment:", error);
-  //     setLoading(false);
-  //   }
-  // };
+      setLoading(false);
+      localStorage.removeItem("cart");
+      setCart([]);
+      navigate("/dashboard/user/orders");
+      toast.success("Payment Completed Successfully ");
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      setLoading(false);
+    }
+  };
 
 
     //handle payments
@@ -352,7 +352,7 @@ const handlePayment = async () => {
                     </button> 
                     </div>
 
-                    {/* <div style={{marginTop: "10px"}}>
+                    <div style={{marginTop: "10px"}}>
                     <button
                       className="btn btn-info"
                       onClick={khaltiPayment}
@@ -361,7 +361,7 @@ const handlePayment = async () => {
                     >
                       {loading ? "Processing ...." : "Pay with Khalti"}
                     </button>
-                    </div> */}
+                    </div>
                     
           
                   </>

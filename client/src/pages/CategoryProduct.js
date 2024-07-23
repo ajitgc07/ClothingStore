@@ -38,6 +38,7 @@ const CategoryProduct = () => {
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    onClick={() => navigate(`/product/${p.slug}`)}
                   />
                   <div className="card-body">
                     <div className="card-name-price">
@@ -53,12 +54,12 @@ const CategoryProduct = () => {
                       {p.description.substring(0, 60)}...
                     </p>
                     <div className="card-name-price">
-                      <button
+                      {/* <button
                         className="btn btn-info ms-1"
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
                         More Details
-                      </button>
+                      </button> */}
                       {/* <button
                     className="btn btn-dark ms-1"
                     onClick={() => {

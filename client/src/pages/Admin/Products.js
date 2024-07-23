@@ -22,6 +22,7 @@ const Products = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+  
   return (
     <Layout>
       <div className="row dashboard">

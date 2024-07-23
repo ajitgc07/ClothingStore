@@ -124,7 +124,7 @@ const ProductDetails = () => {
       <div className="row container similar-products">
 
         
-        <h4>Similar Products ➡️</h4>
+        <h3 className="text-center">You might also like</h3>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
@@ -141,7 +141,7 @@ const ProductDetails = () => {
                 <div className="card-name-price">
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("ne-NP", {
+                    {p.price.toLocaleString("eu-US", {
                       style: "currency",
                       currency: "NPR",
                     })}
@@ -151,12 +151,19 @@ const ProductDetails = () => {
                   {p.description.substring(0, 60)}...
                 </p>
                 <div className="card-name-price">
-                  <button
-                    className="btn btn-outline-primary"
-                    onClick={() => addToCart(p)}
-                  >
-                    ADD TO CART
-                  </button>
+                <button
+                      className={`btn ${
+                        p.quantity <= 0 ? 'btn-outline-danger' : 'btn-outline-primary'
+                      }`}
+                      onClick={() => addToCart(p)}
+                      disabled={p.quantity <= 0}
+                    >
+                      {p.quantity <= 0 ? 'Out of Stock' : 'ADD TO CART'}
+                      &nbsp;&nbsp;
+                      <span className="available-quantity">
+                      In Stock: {p.quantity}
+                      </span>
+                    </button>
                 </div>
               </div>
             </div>

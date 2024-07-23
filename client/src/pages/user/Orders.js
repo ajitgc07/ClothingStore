@@ -8,10 +8,13 @@ import moment from "moment";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/orders");
-      setOrders(data);
+      // Sort orders by createdAt in descending order (latest first)
+      const sortedOrders = data.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+      setOrders(sortedOrders);
     } catch (error) {
       console.log(error);
     }
@@ -20,6 +23,8 @@ const Orders = () => {
   useEffect(() => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
+
+
   return (
     <Layout title={"Your Orders"}>
       <div className="container-flui p-3 m-3 dashboard">
@@ -38,7 +43,7 @@ const Orders = () => {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        <th scope="col">Time of order</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                       </tr>
@@ -48,7 +53,8 @@ const Orders = () => {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).fromNow()}</td>
+                        <td>{moment(o?.createdAt).format("MMMM D, YYYY HH:mm:ss")}</td>
+                        {/* <td>{moment(o?.createAt).fromNow()}</td> */}
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
                       </tr>
@@ -69,7 +75,7 @@ const Orders = () => {
                         <div className="col-md-8">
                           <p>{p.name}</p>
                           <p>{p.description.substring(0, 30)}</p>
-                          <p>Price : {p.price}</p>
+                          <p>Price : NPR. {p.price}</p>
                         </div>
                       </div>
                     ))}

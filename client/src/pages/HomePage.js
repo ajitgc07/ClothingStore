@@ -14,31 +14,41 @@ const MyCarousel = () => {
   return (
     <Carousel interval={3000} pause={false}>
       <Carousel.Item>
-        <img className="d-block w-100" src="/images/img1.jpeg" alt="First slide" />
+        <img className="d-block w-100" 
+        src="/images/img1.jpeg" 
+        alt="First slide" 
+        style={{ height: '425px', objectFit: 'cover' }}
+        />
         <Carousel.Caption>
-        <h3>Welcome to our Clothing Store</h3>
-        <p>Discover a wide range of clothes and accessories.</p>
+        <h1>Welcome To Our Clothing Store</h1>
+        <h3><p>Discover a wide range of clothes and accessories.</p></h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src="/images/img2.jpeg" alt="Second slide" />
+        <img className="d-block w-100" 
+        src="/images/img2.jpeg" 
+        alt="Second slide" 
+        style={{ height: '425px', objectFit: 'cover'}} 
+        />
         <Carousel.Caption>
-        <h3>Discover Style, Embrace Comfort</h3>
-        <p>we’re passionate about more than just fashion—we’re here to elevate your everyday experience.</p>
+        <h1>Discover Style, Embrace Comfort</h1>
+        <h3><p>we’re passionate about more than just fashion—we’re here to elevate your everyday experience.</p></h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src="/images/img3.jpeg" alt="Third slide" />
+        <img className="d-block w-100" 
+        src="/images/img3.jpeg" 
+        alt="Third slide" 
+        style={{ height: '425px', objectFit: 'cover' }}
+        />
         <Carousel.Caption>
-        <h3>Shop with Confidence</h3>
-        <p>Experience excellent customer service and fast delivery with our Clothing Store.</p>
+        <h1>Shop with Confidence</h1>
+        <h3><p>Experience excellent customer service and fast delivery with our Clothing Store.</p></h3>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );
 };
-
-
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -100,6 +110,7 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
+
   //get products
   const getAllProducts = async () => {
     try {
@@ -122,11 +133,11 @@ const HomePage = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     if (page === 1) return;
     loadMore();
   }, [page]);
+
   //load more
   const loadMore = async () => {
     try {
@@ -171,8 +182,6 @@ const HomePage = () => {
     }
   };
 
-  
-
 
   return (
     <Layout title={"Clothing Store"}>
@@ -190,6 +199,7 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
+
           {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="d-flex flex-column">
@@ -199,6 +209,7 @@ const HomePage = () => {
                   <Radio value={p.array}>{p.name}</Radio>
                 </div>
               ))}
+
             </Radio.Group>
           </div>
           <div className="d-flex flex-column">
@@ -223,13 +234,13 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title">{p.name}
+                    </h5>
                     <h5 className="card-title card-price">
                       {p.price.toLocaleString("eu-us", {
                         style: "currency",
                         currency: "NPR",
-                      })}
-                    </h5>
+                      })}</h5>
                   </div>
                   <p className="card-text ">
                     {p.description.substring(0, 60)}...
@@ -249,6 +260,10 @@ const HomePage = () => {
                       disabled={p.quantity <= 0}
                     >
                       {p.quantity <= 0 ? 'Out of Stock' : 'ADD TO CART'}
+                      &nbsp;&nbsp;
+                      <span className="available-quantity">
+                      In Stock: {p.quantity}
+                      </span>
                     </button>
                   </div>
                 </div>

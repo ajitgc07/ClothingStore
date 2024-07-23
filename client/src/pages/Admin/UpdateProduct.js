@@ -62,7 +62,7 @@ const UpdateProduct = () => {
   //create product function
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!/^[A-Za-z\s]+$/.test(name)) {
+    if (!/^[A-Za-z\s-]+$/.test(name)) {
       toast.error("Name must contain only alphabets");
       return;
     }
